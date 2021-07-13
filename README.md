@@ -1,6 +1,6 @@
 # metro_app
 
-A new Flutter project.
+A flutter app with AMap
 
 ## Getting Started
 

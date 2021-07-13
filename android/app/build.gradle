@@ -92,12 +92,8 @@ flutter {
 }
 
 dependencies {
+  implementation fileTree(dir: 'libs', includes: ['*.jar'])
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-  implementation 'com.amap.api:location:latest.integration'
-//  implementation 'com.amap.api:3dmap:latest.integration'
-  // implementation 'com.amap.api:map2d:latest.integration'
-  implementation 'com.amap.api:navi-3dmap:latest.integration'
-  implementation 'com.amap.api:search:latest.integration'
   implementation 'androidx.appcompat:appcompat:1.2.0'
   implementation 'com.google.android.material:material:1.2.1'
   implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
