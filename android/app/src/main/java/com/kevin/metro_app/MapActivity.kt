@@ -30,7 +30,10 @@ class MapActivity : AppCompatActivity(), LocationSource, AMapLocationListener {
   private lateinit var locationClient: AMapLocationClient
   private lateinit var locationClientOption: AMapLocationClientOption
   private var listener: LocationSource.OnLocationChangedListener? = null
-  private var trackId: Long? = null
+
+//  private var trackId by Delegates.notNull<Long>()
+
+  private var trackId: Long = 0;
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -100,7 +103,7 @@ class MapActivity : AppCompatActivity(), LocationSource, AMapLocationListener {
           if (queryTerminalResponse.tid <= 0) {
             // terminal还不存在，先创建
             aMapTrackClient.addTerminal(AddTerminalRequest(Constant.TERMINAL_NAME, Constant.SERVICE_ID), object : OnTrackListener {
-              override fun onQueryTerminalCallback(p0: QueryTerminalResponse?) {
+              override fun onQueryTerminalCallback(queryTerminalResponse: QueryTerminalResponse?) {
 
               }
 
@@ -117,20 +120,16 @@ class MapActivity : AppCompatActivity(), LocationSource, AMapLocationListener {
                 }
               }
 
-              override fun onDistanceCallback(p0: DistanceResponse?) {
-                TODO("Not yet implemented")
+              override fun onDistanceCallback(distanceResponse: DistanceResponse?) {
               }
 
-              override fun onLatestPointCallback(p0: LatestPointResponse?) {
-                TODO("Not yet implemented")
+              override fun onLatestPointCallback(latestPointResponse: LatestPointResponse?) {
               }
 
-              override fun onHistoryTrackCallback(p0: HistoryTrackResponse?) {
-                TODO("Not yet implemented")
+              override fun onHistoryTrackCallback(historyTrackResponse: HistoryTrackResponse?) {
               }
 
-              override fun onQueryTrackCallback(p0: QueryTrackResponse?) {
-                TODO("Not yet implemented")
+              override fun onQueryTrackCallback(queryTrackResponse: QueryTrackResponse?) {
               }
 
               override fun onAddTrackCallback(addTrackResponse: AddTrackResponse?) {
@@ -139,8 +138,7 @@ class MapActivity : AppCompatActivity(), LocationSource, AMapLocationListener {
                 }
               }
 
-              override fun onParamErrorCallback(p0: ParamErrorResponse?) {
-                TODO("Not yet implemented")
+              override fun onParamErrorCallback(paramErrorResponse: ParamErrorResponse?) {
               }
 
             })
@@ -157,23 +155,18 @@ class MapActivity : AppCompatActivity(), LocationSource, AMapLocationListener {
       }
 
       override fun onCreateTerminalCallback(addTerminalResponse: AddTerminalResponse?) {
-        TODO("Not yet implemented")
       }
 
       override fun onDistanceCallback(distanceResponse: DistanceResponse?) {
-        TODO("Not yet implemented")
       }
 
       override fun onLatestPointCallback(latestPointRequest: LatestPointResponse?) {
-        TODO("Not yet implemented")
       }
 
       override fun onHistoryTrackCallback(historyTrackResponse: HistoryTrackResponse?) {
-        TODO("Not yet implemented")
       }
 
       override fun onQueryTrackCallback(queryTrackResponse: QueryTrackResponse?) {
-        TODO("Not yet implemented")
       }
 
       override fun onAddTrackCallback(addTrackResponse: AddTrackResponse?) {
@@ -183,9 +176,11 @@ class MapActivity : AppCompatActivity(), LocationSource, AMapLocationListener {
       }
 
       override fun onParamErrorCallback(paramErrorResponse: ParamErrorResponse?) {
-        TODO("Not yet implemented")
       }
     })
+
+    //查询终端实时位置
+//    aMapTrackClient.queryLatestPoint(LatestPointRequest(Constant.SERVICE_ID,)
   }
 
 
