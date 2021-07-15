@@ -16,41 +16,55 @@ class HomeView extends GetView<HomeController> {
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: TextFormField(
-                  onChanged: (String text) {
-                    if (text.isEmpty) return;
-                    controller.timer?.cancel();
-                    controller.timer = new Timer(controller.durationTime, () {
-                      //搜索函数
-                      controller.platform.invokeMethod(
-                        "queryBusStations",
-                        {
-                          'search_text': controller.textEditingController.text,
-                          'city_name': '苏州',
-                        },
-                      );
-                    });
-                  },
-                  controller: controller.textEditingController,
-                  textInputAction: TextInputAction.go,
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  controller.platform.invokeMethod(
-                    "queryBusLines",
-                    {
-                      'search_text': controller.textEditingController.text,
-                      'city_code': '3205',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    onChanged: (String text) {
+                      if (text.isEmpty) return;
+                      controller.timer?.cancel();
+                      controller.timer = new Timer(controller.durationTime, () {
+                        //搜索函数
+                        controller.platform.invokeMethod(
+                          "queryBusStations",
+                          {
+                            'search_text': controller.textEditingController.text,
+                            'city_name': '苏州',
+                          },
+                        );
+                      });
                     },
-                  );
-                },
-                child: Text('搜索'),
-              ),
-            ],
+                    controller: controller.textEditingController,
+                    textInputAction: TextInputAction.go,
+                    decoration: InputDecoration(
+                        isDense: true,
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 5,
+                        ),
+                        hintText: '请输入公交线路'),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.platform.invokeMethod(
+                      "queryBusLines",
+                      {
+                        'search_text': controller.textEditingController.text,
+                        'city_code': '0512',
+                      },
+                    );
+                  },
+                  child: Text('搜索'),
+                ),
+              ],
+            ),
           ),
           Obx(
             () {

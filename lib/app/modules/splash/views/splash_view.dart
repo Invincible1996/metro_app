@@ -27,16 +27,18 @@ class _SplashViewState extends State<SplashView> {
     ].request();
     print(statuses[Permission.location]);
 
-    Get.offAllNamed(Routes.HOME);
+    2.delay(() {
+      Get.offAllNamed(Routes.HOME);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('SplashView'),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: Text('SplashView'),
+      //   centerTitle: true,
+      // ),
       body: Center(
         child: Text(
           'SplashView is working',

@@ -36,7 +36,7 @@ class MainActivity : FlutterActivity() {
 
         }
         "openMapView" -> {
-          val intent = Intent(applicationContext, MapActivity::class.java)
+          val intent = Intent(applicationContext, MapActivity2::class.java)
           startActivity(intent)
         }
       }
