@@ -9,6 +9,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeAddress;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.track.AMapTrackClient;
 import com.amap.api.track.ErrorCode;
 import com.amap.api.track.OnTrackLifecycleListener;
@@ -32,13 +38,11 @@ import com.amap.api.track.query.model.QueryTrackResponse;
 public class MapActivity2 extends AppCompatActivity implements View.OnClickListener {
 
 
-  private Button bt_distance;
-
-  private Button bt_location;
-
   private TextView tv_location;
 
   private TextView tv_distance;
+
+  private TextView tv_address;
 
   private AMapTrackClient aMapTrackClient;
 
@@ -81,16 +85,18 @@ public class MapActivity2 extends AppCompatActivity implements View.OnClickListe
     }
   };
   private long terminalId;
+  private GeocodeSearch geocodeSearch;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_map2);
 
-    bt_distance = findViewById(R.id.bt_distance);
-    bt_location = findViewById(R.id.bt_location);
+    Button bt_distance = findViewById(R.id.bt_distance);
+    Button bt_location = findViewById(R.id.bt_location);
     tv_distance = findViewById(R.id.tv_distance);
     tv_location = findViewById(R.id.tv_location);
+    tv_address = findViewById(R.id.tv_desc);
 
     bt_location.setOnClickListener(this);
     bt_distance.setOnClickListener(this);
@@ -200,6 +206,23 @@ public class MapActivity2 extends AppCompatActivity implements View.OnClickListe
 
       }
     });
+
+    geocodeSearch = new GeocodeSearch(MapActivity2.this);
+
+    geocodeSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+      @Override
+      public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+        RegeocodeAddress regeocodeAddress = regeocodeResult.getRegeocodeAddress();
+        String formatAddress = regeocodeAddress.getFormatAddress();
+//        simpleAddress = formatAddress.substring(9);
+        tv_address.setText("查询经纬度对应详细地址：\n" + formatAddress);
+      }
+
+      @Override
+      public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
+      }
+    });
   }
 
   private void initSdk() {
@@ -231,6 +254,7 @@ public class MapActivity2 extends AppCompatActivity implements View.OnClickListe
 
           }
 
+          @SuppressLint("SetTextI18n")
           @Override
           public void onLatestPointCallback(LatestPointResponse latestPointResponse) {
             if (latestPointResponse.isSuccess()) {
@@ -240,6 +264,10 @@ public class MapActivity2 extends AppCompatActivity implements View.OnClickListe
               System.out.println(point.getLat());
               System.out.println(point.getLng());
               tv_location.setText("当前经纬度为:" + point.getLat() + point.getLng());
+
+              LatLonPoint latLonPoint = new LatLonPoint(point.getLat(), point.getLng());
+              RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 500f, GeocodeSearch.AMAP);
+              geocodeSearch.getFromLocationAsyn(query);
             } else {
               // 查询实时位置失败
             }
