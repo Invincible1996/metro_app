@@ -13,16 +13,24 @@
   <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 用于申请获取蓝牙信息进行室内定位 -->
   <uses-permission android:name="android.permission.BLUETOOTH" />
   <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
   <application
     android:icon="@mipmap/ic_launcher"
     android:label="metro_app">
     <activity
+      android:name=".TrackSearchActivity"
+      android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+    <activity
       android:name=".MapActivity2"
       android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     <activity
       android:name=".MapActivity"
+      android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+    <activity
+      android:name=".OtherSearchActivity"
+      android:screenOrientation="portrait"
       android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
     <meta-data

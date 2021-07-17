@@ -137,7 +137,7 @@ public class MapActivity2 extends AppCompatActivity implements View.OnClickListe
     aMapTrackClient.setInterval(5, 30);
 
     mapView = findViewById(R.id.activity_track_service_map);
-    mapView.getMap().moveCamera(CameraUpdateFactory.zoomTo(14));
+    mapView.getMap().moveCamera(CameraUpdateFactory.zoomTo(20));
     mapView.onCreate(savedInstanceState);
 
     // 启动地图内置定位

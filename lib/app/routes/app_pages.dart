@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
+
 import 'package:metro_app/app/modules/home/bindings/home_binding.dart';
 import 'package:metro_app/app/modules/home/views/home_view.dart';
+import 'package:metro_app/app/modules/map/bindings/map_binding.dart';
+import 'package:metro_app/app/modules/map/views/map_view.dart';
 import 'package:metro_app/app/modules/splash/bindings/splash_binding.dart';
 import 'package:metro_app/app/modules/splash/views/splash_view.dart';
 
@@ -21,6 +24,11 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.MAP,
+      page: () => MapView(),
+      binding: MapBinding(),
     ),
   ];
 }

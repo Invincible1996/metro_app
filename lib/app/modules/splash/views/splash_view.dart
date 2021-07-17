@@ -22,8 +22,8 @@ class _SplashViewState extends State<SplashView> {
     ].request();
     print(statuses[Permission.location]);
 
-    2.delay(() {
-      Get.offAllNamed(Routes.HOME);
+    1.delay(() {
+      Get.offAllNamed(Routes.MAP);
     });
   }
 

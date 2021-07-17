@@ -20,4 +20,29 @@ public class Constant {
    * 到该终端
    */
   public static final String TERMINAL_NAME = "test_metro_app";
+
+  /**
+   * 查询公交线路
+   */
+  public static final String QUERY_BUS_LINES = "queryBusLines";
+
+  /**
+   * 查询公交站
+   */
+  public static final String QUERY_BUS_STATIONS = "queryBusStations";
+
+  /**
+   * 打开MapView
+   */
+  public static final String OPEN_MAP_VIEW = "openMapView";
+
+  /**
+   *
+   */
+  public static final String SEARCH_LOCATION = "searchLocation";
+
+  /**
+   *
+   */
+  public static final String TRACK_SEARCH_ACTIVITY = "trackSearchActivity";
 }

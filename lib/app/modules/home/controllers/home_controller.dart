@@ -35,7 +35,8 @@ class HomeController extends GetxController {
   /// @desc
   getStationList({required String cityCode, required String cityName}) async {
     Dio dio = Dio();
-    var response = await dio.get('https://map.amap.com/service/subway?_${DateTime.now().millisecondsSinceEpoch}&srhdata=${cityCode}_drw_$cityName.json');
+    var response = await dio.get(
+        'https://map.amap.com/service/subway?_${DateTime.now().millisecondsSinceEpoch}&srhdata=${cityCode}_drw_$cityName.json');
     // print(response);
     StationModel stationModel = StationModel.fromJson(response.data);
 

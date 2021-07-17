@@ -2,6 +2,7 @@ package com.kevin.metro_app
 
 import android.content.Intent
 import com.kevin.metro_app.util.AMapManager
+import com.kevin.metro_app.util.Constant
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -19,7 +20,7 @@ class MainActivity : FlutterActivity() {
     methodChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL)
     methodChannel.setMethodCallHandler { call, _ ->
       when (call.method) {
-        "queryBusStations" -> {
+        Constant.QUERY_BUS_STATIONS -> {
           println(call.method)
           println(call.argument<String>("search_text"))
           val searchValue = call.argument<String>("search_text")
@@ -27,7 +28,7 @@ class MainActivity : FlutterActivity() {
           AMapManager.queryBusStations(methodChannel, applicationContext, searchValue, cityName)
 
         }
-        "queryBusLines" -> {
+        Constant.QUERY_BUS_LINES -> {
           println(call.method)
           println(call.argument<String>("search_text"))
           val searchValue = call.argument<String>("search_text")
@@ -35,8 +36,16 @@ class MainActivity : FlutterActivity() {
           AMapManager.queryBusLines(methodChannel, applicationContext, searchValue, cityCode, 1);
 
         }
-        "openMapView" -> {
+        Constant.OPEN_MAP_VIEW -> {
           val intent = Intent(applicationContext, MapActivity2::class.java)
+          startActivity(intent)
+        }
+        Constant.TRACK_SEARCH_ACTIVITY -> {
+          val intent = Intent(applicationContext, TrackSearchActivity::class.java)
+          startActivity(intent)
+        }
+        Constant.SEARCH_LOCATION -> {
+          val intent = Intent(applicationContext, OtherSearchActivity::class.java)
           startActivity(intent)
         }
       }

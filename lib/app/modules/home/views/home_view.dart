@@ -30,7 +30,8 @@ class HomeView extends GetView<HomeController> {
                         controller.platform.invokeMethod(
                           "queryBusStations",
                           {
-                            'search_text': controller.textEditingController.text,
+                            'search_text':
+                                controller.textEditingController.text,
                             'city_name': '苏州',
                           },
                         );
