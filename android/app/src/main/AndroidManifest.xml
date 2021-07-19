@@ -19,6 +19,9 @@
     android:icon="@mipmap/ic_launcher"
     android:label="metro_app">
     <activity
+      android:name=".PlaceSearchActivity"
+      android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+    <activity
       android:name=".TrackSearchActivity"
       android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     <activity
@@ -27,7 +30,6 @@
     <activity
       android:name=".MapActivity"
       android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
     <activity
       android:name=".OtherSearchActivity"
       android:screenOrientation="portrait"

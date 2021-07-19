@@ -45,4 +45,7 @@ public class Constant {
    *
    */
   public static final String TRACK_SEARCH_ACTIVITY = "trackSearchActivity";
+
+  public static final String GET_CURRENT_LOCATION ="getCurrentLocation";
+  public static final String PLACE_SEARCH ="placeSearch";
 }
