@@ -1,10 +1,7 @@
 /// @Date: 2021/7/19 17:58
 /// @Author: kevin
 /// @Description: 星期一
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 class AMapView extends StatefulWidget {
@@ -23,28 +20,35 @@ class _AMapViewState extends State<AMapView> {
     final String viewType = 'com.kevin.aMap.plugin';
     // Pass parameters to the platform side.
     final Map<String, dynamic> creationParams = <String, dynamic>{};
-
-    return PlatformViewLink(
+    return AndroidView(
       viewType: viewType,
-      surfaceFactory: (BuildContext context, PlatformViewController controller) {
-        return AndroidViewSurface(
-          controller: controller as AndroidViewController,
-          gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
-          hitTestBehavior: PlatformViewHitTestBehavior.opaque,
-        );
+      creationParams: {
+        "myContent": "我是flutter通过参数传入的文本内容",
       },
-      onCreatePlatformView: (PlatformViewCreationParams params) {
-        return PlatformViewsService.initSurfaceAndroidView(
-          id: params.id,
-          viewType: viewType,
-          layoutDirection: TextDirection.ltr,
-          creationParams: creationParams,
-          creationParamsCodec: StandardMessageCodec(),
-        )
-          ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
-          ..create();
-      },
+      creationParamsCodec: const StandardMessageCodec(),
+      onPlatformViewCreated: (int id) {}, //初始化
     );
+    // return PlatformViewLink(
+    //   viewType: viewType,
+    //   surfaceFactory: (BuildContext context, PlatformViewController controller) {
+    //     return AndroidViewSurface(
+    //       controller: controller as AndroidViewController,
+    //       gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+    //       hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+    //     );
+    //   },
+    //   onCreatePlatformView: (PlatformViewCreationParams params) {
+    //     return PlatformViewsService.initSurfaceAndroidView(
+    //       id: params.id,
+    //       viewType: viewType,
+    //       layoutDirection: TextDirection.ltr,
+    //       creationParams: creationParams,
+    //       creationParamsCodec: StandardMessageCodec(),
+    //     )
+    //       ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
+    //       ..create();
+    //   },
+    // );
   }
 
   @override

@@ -28,11 +28,12 @@ public class FlutterAMapView implements PlatformView, MethodChannel.MethodCallHa
   public FlutterAMapView(@NotNull Context context, int id, @Nullable Map<String, Object> creationParams) {
 //    mapView = new TextureMapView(context);
     textView = new TextView(context);
+
   }
 
   @Override
   public void onMethodCall(@NonNull @NotNull MethodCall call, @NonNull @NotNull MethodChannel.Result result) {
-
+    System.out.println(call.method);
   }
 
   @Override

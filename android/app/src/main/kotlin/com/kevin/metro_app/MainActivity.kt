@@ -1,14 +1,10 @@
 package com.kevin.metro_app
 
 import android.os.Bundle
-import com.baseflow.permissionhandler.PermissionHandlerPlugin.registerWith
 import com.kevin.metro_app.plugin.AMapPlugin
-import com.kevin.metro_app.plugin.FlutterAMapViewFactory
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugins.GeneratedPluginRegistrant
-import io.flutter.plugins.GeneratedPluginRegistrant.registerWith
 
 class MainActivity : FlutterActivity() {
 //
@@ -24,7 +20,8 @@ class MainActivity : FlutterActivity() {
 
   override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
     super.configureFlutterEngine(flutterEngine)
-    GeneratedPluginRegistrant()
+    GeneratedPluginRegistrant.registerWith(flutterEngine)
+    AMapPlugin.registerWith(flutterEngine)
   }
 
 //  override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
