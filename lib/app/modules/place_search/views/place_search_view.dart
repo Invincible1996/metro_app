@@ -14,6 +14,7 @@ class PlaceSearchView extends GetView<PlaceSearchController> {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: TextFormField(
+          autofocus: true,
           onChanged: (String value) {
             if (value.isEmpty) return;
             controller.timer?.cancel();
@@ -35,8 +36,8 @@ class PlaceSearchView extends GetView<PlaceSearchController> {
                 Get.back();
               },
               child: Container(
-                height: 45,
-                padding: EdgeInsets.only(left: 10),
+                // height: 45,
+                padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
                 alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -47,7 +48,21 @@ class PlaceSearchView extends GetView<PlaceSearchController> {
                     ),
                   ),
                 ),
-                child: Text('${controller.placeList[index]}'),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${controller.placeList[index]['title']}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text('${controller.placeList[index]['snippet']}'),
+                  ],
+                ),
               ),
             ),
           );
