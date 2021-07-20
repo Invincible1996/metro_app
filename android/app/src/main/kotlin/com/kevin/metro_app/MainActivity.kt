@@ -14,14 +14,17 @@ class MainActivity : FlutterActivity() {
 //
 //  private lateinit var methodChannel: MethodChannel
 
+  private var bundle: Bundle? = null
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    bundle = savedInstanceState
   }
 
   override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
     super.configureFlutterEngine(flutterEngine)
     GeneratedPluginRegistrant.registerWith(flutterEngine)
-    AMapPlugin.registerWith(flutterEngine)
+    AMapPlugin.registerWith(flutterEngine, this)
   }
 
 //  override fun configureFlutterEngine(flutterEngine: FlutterEngine) {

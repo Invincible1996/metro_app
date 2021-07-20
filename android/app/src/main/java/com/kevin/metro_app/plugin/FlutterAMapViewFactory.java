@@ -1,7 +1,6 @@
 package com.kevin.metro_app.plugin;
 
 import android.content.Context;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -25,6 +24,6 @@ public class FlutterAMapViewFactory extends PlatformViewFactory {
 
   @Override
   public PlatformView create(Context context, int viewId, Object args) {
-    return new FlutterAMapView(context, viewId, (Map<String, Object>) args);
+    return new FlutterAMapView(context, messenger, viewId, (Map<String, Object>) args);
   }
 }

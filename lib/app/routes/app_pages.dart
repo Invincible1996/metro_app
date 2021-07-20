@@ -4,6 +4,8 @@ import 'package:metro_app/app/modules/home/bindings/home_binding.dart';
 import 'package:metro_app/app/modules/home/views/home_view.dart';
 import 'package:metro_app/app/modules/map/bindings/map_binding.dart';
 import 'package:metro_app/app/modules/map/views/map_view.dart';
+import 'package:metro_app/app/modules/place_search/bindings/place_search_binding.dart';
+import 'package:metro_app/app/modules/place_search/views/place_search_view.dart';
 import 'package:metro_app/app/modules/splash/bindings/splash_binding.dart';
 import 'package:metro_app/app/modules/splash/views/splash_view.dart';
 
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.MAP,
       page: () => MapView(),
       binding: MapBinding(),
+    ),
+    GetPage(
+      name: _Paths.PLACE_SEARCH,
+      page: () => PlaceSearchView(),
+      binding: PlaceSearchBinding(),
     ),
   ];
 }
